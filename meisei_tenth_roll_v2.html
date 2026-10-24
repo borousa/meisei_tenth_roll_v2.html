@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f8fc">
+<title>たのしいクイズ｜明成高校</title>
+<style>
+:root{--bg:#f6f7fb;--panel:#fff;--ink:#202636;--muted:#727b8c;--line:#e1e5ee;--accent:#5468d9;--danger:#c52d45;--shadow:0 14px 40px #11172a10}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;background:var(--bg);color:var(--ink)}
+body{transition:background .3s,color .3s;overflow-x:hidden}button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #8ba0ff;outline-offset:3px}
+.wrap{width:min(100% - 28px,680px);margin:0 auto;padding:22px 0 42px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}.brand{font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--muted)}.pill{font-size:11px;border:1px solid var(--line);padding:6px 10px;border-radius:99px;color:var(--muted);background:var(--panel)}
+.hero,.panel{background:var(--panel);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}.hero{padding:clamp(24px,7vw,44px);text-align:center}.eyebrow{font-size:11px;letter-spacing:.18em;color:var(--accent);font-weight:900}.hero h1{font-size:clamp(32px,8vw,50px);line-height:1.13;letter-spacing:-.04em;margin:14px 0 12px}.hero p{color:var(--muted);line-height:1.8;margin:0 auto 24px;max-width:430px}.btn{border:0;border-radius:14px;padding:15px 18px;font-weight:800;background:var(--accent);color:white;box-shadow:0 6px 16px #5468d933}.btn.secondary{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none}.btn:active,.choice:active{transform:scale(.99)}.full{width:100%}.small{font-size:12px;color:var(--muted);line-height:1.7}.panel{padding:clamp(18px,5vw,30px)}.hidden{display:none!important}.progressline{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin:12px 0 20px}.progressline span{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}.qmeta{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px;font-weight:800}.stage{font-size:11px;color:var(--accent);letter-spacing:.12em;font-weight:900;margin:18px 0 8px}.question{font-size:clamp(21px,5.5vw,28px);line-height:1.55;margin:0 0 22px;white-space:pre-line}.choices{display:grid;gap:10px}.choice{display:flex;align-items:center;gap:12px;text-align:left;width:100%;padding:15px 14px;border:1px solid var(--line);border-radius:15px;background:var(--panel);color:var(--ink);font-weight:650;line-height:1.5;transition:transform .1s,border .2s}.letter{display:grid;place-items:center;width:29px;height:29px;border-radius:9px;background:var(--bg);color:var(--muted);font-size:12px;flex:none}.choice:hover{border-color:var(--accent)}.choice:disabled{cursor:default}.feedback{margin-top:16px;border-radius:14px;padding:14px;line-height:1.7;font-size:14px;background:var(--bg);white-space:pre-line}.feedback.bad{background:#fff0f2;color:#9d2033}.feedback.good{background:#eef8f2;color:#206743}.nextrow{margin-top:14px}.tiny{font-size:11px;color:var(--muted);text-align:center;margin-top:18px}.note{margin:16px 0 0;color:var(--muted);font-size:12px;line-height:1.7}.footer{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:18px}.toggle{font-size:12px;border:1px solid var(--line);border-radius:99px;background:var(--panel);color:var(--muted);padding:8px 11px}
+body.stage2{--bg:#e7e8ed;--panel:#f4f4f6;--ink:#24232b;--muted:#73717c;--line:#d2d0d9;--accent:#6e526c}
+body.stage3{--bg:#09090d;--panel:#121218;--ink:#f2edf1;--muted:#aaa0aa;--line:#39303a;--accent:#c72b48;--shadow:0 14px 40px #0008}
+body.stage3 .eyebrow,body.stage3 .stage{color:#f05470}body.stage3 .letter{background:#21151c;color:#efb8c3}body.stage3 .feedback{background:#21151c;color:#f1dbe0}body.stage3 .feedback.good{background:#14231c;color:#a9e6c2}body.stage3 .feedback.bad{background:#2b1018;color:#ffb3c0}
+.glitch{animation:glitch .18s steps(2,end) 3} @keyframes glitch{0%{transform:translate(0);filter:none}25%{transform:translate(3px,-1px);filter:hue-rotate(60deg)}50%{transform:translate(-3px,1px);filter:contrast(1.8)}75%{transform:translate(1px,2px);filter:hue-rotate(-60deg)}100%{transform:translate(0);filter:none}}
+.scan:after{content:"";pointer-events:none;position:fixed;inset:0;z-index:20;background:repeating-linear-gradient(to bottom,transparent 0 3px,#00000009 4px 5px);opacity:.25}
+.jumpscare{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:#050408;animation:flash .65s steps(2,end) forwards}.face{font-size:min(70vw,360px);color:#f4edf1;text-shadow:0 0 18px #f00,0 0 50px #a00020;transform:scaleY(1.25);font-weight:900;line-height:1}.scaretext{position:absolute;bottom:14%;color:#fff;font-size:13px;letter-spacing:.3em}@keyframes flash{0%{opacity:0}8%{opacity:1}20%{opacity:.7}32%{opacity:1}100%{opacity:0;visibility:hidden}}
+.ending{font-size:14px;line-height:1.9;white-space:pre-line}.ending h2{font-size:28px;line-height:1.3;margin:10px 0 18px}.score{font-size:42px;font-weight:900;letter-spacing:-.04em}.rule{height:1px;background:var(--line);margin:20px 0}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top"><div class="brand">MEISEI HIGH SCHOOL · QUIZ CLUB</div><button id="soundToggle" class="toggle" type="button">演出：ON</button></header>
+  <main>
+    <section id="home" class="hero">
+      <div class="eyebrow">WELCOME TO THE QUIZ!</div>
+      <h1>たのしい<br>クイズ</h1>
+      <p>全30問！ 明成高校にまつわる、かんたんなクイズに挑戦しよう。<br>最後まで楽しんでね。</p>
+      <button id="start" class="btn full">クイズをはじめる</button>
+      <p class="small" style="margin-top:18px;margin-bottom:0">目安：5〜10分 · 音は出ません</p>
+    </section>
+    <section id="game" class="panel hidden" aria-live="polite">
+      <div class="qmeta"><span id="counter">QUESTION 01 / 30</span><span id="scoreLabel">正解 0</span></div>
+      <div class="progressline"><span id="progress"></span></div>
+      <div id="stage" class="stage">STAGE 1 · WARM UP</div>
+      <h2 id="question" class="question"></h2>
+      <div id="choices" class="choices"></div>
+      <div id="feedback" class="feedback hidden"></div>
+      <div class="nextrow"><button id="next" class="btn full hidden">次の問題へ</button></div>
+      <p id="note" class="note hidden"></p>
+      <div class="footer"><span id="footerText" class="small">楽しく答えてね！</span><button id="quit" class="toggle" type="button">タイトルへ</button></div>
+    </section>
+    <section id="result" class="panel hidden">
+      <div class="eyebrow">QUIZ COMPLETE</div>
+      <div id="ending" class="ending"></div>
+      <div class="rule"></div>
+      <div class="small">正解数</div><div id="finalScore" class="score">0 / 30</div>
+      <button id="restart" class="btn full" style="margin-top:18px">もう一度プレイ</button>
+      <p class="tiny">※ 急な画面演出があります。苦手な人は上の「演出」からOFFにできます。</p>
+    </section>
+  </main>
+  <p class="tiny">A LITTLE QUIZ FROM MEISEI HIGH SCHOOL</p>
+</div>
+<div id="scare" class="jumpscare hidden" aria-hidden="true"><div class="face">●</div><div class="scaretext">み て い る よ</div></div>
+<script>
+const qs = [
+{q:"朝、学校に来たら最初にすることは？",a:["下駄箱で靴を履き替える","屋上に行く","校長室で寝る","全校放送をする"],c:0,e:"正解！ いつもの朝。今日も普通の一日が始まる。"},
+{q:"授業の始まりを知らせるものは？",a:["チャイム","花火","サイレン","拍手"],c:0,e:"正解。チャイムが鳴ったら席につこう。"},
+{q:"黒板に字を書く道具は？",a:["チョーク","スプーン","歯ブラシ","リモコン"],c:0,e:"正解！ きれいな黒板だね。"},
+{q:"図書室で静かにする理由は？",a:["本を読む人がいるから","壁が眠っているから","先生が透明だから","時計を止めるため"],c:0,e:"その通り。……静かにしていれば、聞こえないはず。"},
+{q:"学校で時間を確認するものは？",a:["時計","窓の外の影","机の裏の数字","誰かの声"],c:0,e:"正解！ 時計は午前10時を指している。さっきも、10時だった気がする。"},
+{q:"テストでわからない問題があったら？",a:["落ち着いて考える","答案用紙に自分の名前を何度も書く","隣の空席に聞く","目を閉じて待つ"],c:0,e:"落ち着いて考えよう。答案用紙の名前欄は、ひとつだけでいい。"},
+{q:"明成高校の校舎にある、一般的な教室の設備は？",a:["机と椅子","海底トンネル","観覧車","改札口"],c:0,e:"正解。机と椅子。机と椅子。机と椅子。",n:"教室の後ろに、使われていない椅子が一脚ある。"},
+{q:"授業中、先生が教室に入ってきたら？",a:["挨拶をする","全員で後ろを向く","机の下に隠れる","名前を呼ばれるまで息を止める"],c:0,e:"正解。先生は教室に入ってきた。……先生、だったかな。"},
+{q:"出席確認で返事をするときは？",a:["はい、と答える","窓を三回叩く","机をひっくり返す","返事をしないで笑う"],c:0,e:"正解。先生は名簿を見ている。名簿には、何人分の名前がある？",n:"名簿の最後の行だけ、インクがにじんでいる。"},
+{q:"学校で迷子になったら、どうする？",a:["職員室で尋ねる","同じ廊下を歩き続ける","知らない階段を下りる","壁の文字を数える"],c:0,e:"職員室に行けば大丈夫。廊下の端に「第十教室」と書かれた札がある。",n:"明成高校に、第十教室なんてあっただろうか。"},
+{q:"学校の避難訓練で大切なことは？",a:["落ち着いて避難する","放送が終わるまで目を閉じる","知らない人についていく","出口を数え直す"],c:0,e:"正解。放送が流れる。『そのまま席にいてください』。避難訓練のはずなのに。"},
+{q:"教室の窓から見えるものは？",a:["校庭や空","さっきまでいた自分","窓の外に立つ教室","こちらを向いた椅子"],c:0,e:"……本当に？",n:"画面の色が、ほんの少しだけ変わった。"},
+{q:"忘れ物をしたときは？",a:["先生に相談する","自分の机の中を確認する","空席の机を開ける","誰かの名前を呼ぶ"],c:0,e:"自分の机の中には何もない。隣の机には、古い出席簿が入っている。"},
+{q:"学校で一番大事なルールは？",a:["人を傷つけないこと","第十問には答えないこと","空席に座らないこと","チャイムのあと振り返らないこと"],c:0,e:"もちろん、人を傷つけないこと。……今の選択肢、誰が書いた？",n:"画面の端に、読めない文字が一瞬だけ浮かんだ。"},
+{q:"先生が『後ろを見ないで』と言ったら？",a:["理由を聞いて、落ち着いて行動する","すぐに後ろを見る","目を閉じて走る","後ろの席に返事をする"],c:0,e:"そうだね。見ないほうがいい。……椅子が床をこする音がした。"},
+{q:"テストの問題用紙に、知らない問題があったら？",a:["飛ばして次に進む","自分の名前を消す","紙を裏返して破る","教室の人数を数える"],c:0,e:"次に進もう。問題番号がひとつ飛んでいる。第十問がない。",n:"画面が一度だけ乱れた。"},
+{q:"学校の名簿に必要なのは？",a:["在籍している生徒の名前","空席の数だけ名前を足すこと","誰も知らない名前","消しても戻る名前"],c:0,e:"在籍している生徒の名前。では、在籍していない名前が書かれていたら？"},
+{q:"廊下で誰かに呼び止められたら？",a:["相手を確認してから返事をする","声だけで相手を決める","知らない名前を名乗る","何も聞こえなかったことにする"],c:0,e:"振り返った？ 画面の向こうの君は、誰を見た？",n:"文字が崩れ始めた。まだ、クイズは続いている。"},
+{q:"明成高校の校内放送で、聞いたことがない声がしたら？",a:["先生に確認する","その声の指示に従う","声のする教室へ行く","自分の名前を大声で呼ぶ"],c:0,e:"放送：『出席番号、最後のひとり。返事をしてください』。そんな放送予定はない。"},
+{q:"教室に椅子が一脚多いと気づいたら？",a:["先生に報告する","誰かが来るまで座って待つ","椅子に名前を書く","椅子を数え直す"],c:0,e:"報告しよう。……先生がいない。廊下にも、誰もいない。",n:"この問題だけ、正解の表示が遅れた。"},
+{q:"出席簿に自分の名前がなかったら？",a:["先生に確認する","隣の名前を自分のものにする","空欄に知らない名前を書く","何度もページをめくる"],c:0,e:"名簿には、君の名前がない。代わりに、見覚えのない名前がひとつ増えている。"},
+{q:"教室のドアに『入室禁止』と書かれていたら？",a:["入らず、先生に確認する","すぐにドアを開ける","ノックを十回する","中の声に返事をする"],c:0,e:"ドアの向こうから、君と同じ声がする。『遅かったね』。",n:"画面の文字が、読めない形に変わっていく。"},
+{q:"第十問の答えが、どこにも書かれていなかったら？",a:["問題を飛ばして先へ進む","答案用紙に『はい』と書く","後ろの席に聞く","自分の名前を答えにする"],c:0,e:"正解……？ 問題番号が戻った。第十問。第十問。第十問。"},
+{q:"出席簿の最後のページに書かれていた言葉は？",a:["『まだ、ひとりいる』","『今日は晴れです』","『宿題を忘れずに』","『明日は休校です』"],c:0,e:"『まだ、ひとりいる』。その下に、小さな字で『数えないで』とある。",n:"急に画面が暗くなった。"},
+{q:"教室にいる人数を数えると、毎回違う。どうする？",a:["数えるのをやめ、出口を探す","何度も数え続ける","全員に名前を聞く","最後の席に座る"],c:0,e:"出口を探そう。廊下の札は「第十教室」から「出席確認中」に変わっている。"},
+{q:"校内放送が自分の返事を待っている。どうする？",a:["返事をせず、先生を探す","大きな声で返事をする","自分の名前を何度も言う","放送室へ走る"],c:0,e:"放送：『返事がありません。では、こちらで名前を決めます』。",n:"画面にノイズが走る。文字の一部が消えた。"},
+{q:"名簿の空欄に、名前が浮かび上がってきた。どうする？",a:["ページを閉じる","その名前を声に出す","指でなぞる","空欄を埋める"],c:0,e:"ページを閉じた。なのに、その名前は画面に残っている。"},
+{q:"最後の席から『ここにいるよ』と声がした。どうする？",a:["振り返らず、出口へ向かう","『誰？』と聞く","席に近づく","返事をする"],c:0,e:"出口のドアが見えた。ドアのガラスに、こちらを見ている影が映っている。",n:"次が最後の問題。正解しても、終わるとは限らない。"},
+{q:"明成高校の出席簿。最後の欄に書かれているのは？",a:["空欄のままにする","自分の名前を書く","『はい』と書く","知らない名前を書く"],c:0,e:"空欄のままにする。それが、最後に残された選択だった。"},
+{q:"第十問。最後の質問です。\nこの教室に、あなたは何人いると思いますか？",a:["自分ひとり","ふたり","十人","数えない"],c:3,e:"数えない。正解。……本当に？",n:"出席簿が閉じる音がした。最後のページに、もう一行だけ増えている。"}
+];
+let index=0,score=0,answered=false,soundOn=true,scareDone=false;
+const $=id=>document.getElementById(id);
+function setStage(){
+ document.body.classList.remove("stage2","stage3","scan");
+ if(index>=8&&index<17)document.body.classList.add("stage2");
+ if(index>=17)document.body.classList.add("stage3","scan");
+ const label=index<8?"STAGE 1 · WARM UP":index<17?"STAGE 2 · SOMETHING IS WRONG":"STAGE 3 · ATTENDANCE";
+ $("stage").textContent=label;
+}
+function startGame(){index=0;score=0;answered=false;scareDone=false;$("home").classList.add("hidden");$("result").classList.add("hidden");$("game").classList.remove("hidden");render();}
+function render(){
+ answered=false;setStage();const q=qs[index];
+ $("counter").textContent=`QUESTION ${String(index+1).padStart(2,"0")} / ${qs.length}`;
+ $("scoreLabel").textContent=`正解 ${score}`;$("progress").style.width=`${index/qs.length*100}%`;
+ $("question").textContent=q.q;$("choices").innerHTML="";$("feedback").className="feedback hidden";$("next").classList.add("hidden");$("note").classList.add("hidden");
+ $("footerText").textContent=index<8?"楽しく答えてね！":index<17?"……何か、おかしい。":"返事をしないで。";
+ q.a.forEach((a,i)=>{const b=document.createElement("button");b.className="choice";b.innerHTML=`<span class="letter">${String.fromCharCode(65+i)}</span><span></span>`;b.lastElementChild.textContent=a;b.onclick=()=>answer(i);$("choices").appendChild(b);});
+ if(index===14&&soundOn&&!scareDone){scareDone=true;setTimeout(showScare,850);}
+ if(index===23&&soundOn&&!scareDone){scareDone=true;setTimeout(showScare,650);}
+}
+function answer(n){
+ if(answered)return;answered=true;const q=qs[index],correct=n===q.c;if(correct)score++;
+ [...$("choices").children].forEach((b,i)=>{b.disabled=true;if(i===q.c)b.style.borderColor="#56a77b";if(i===n&&!correct)b.style.borderColor="#d34b61";});
+ $("scoreLabel").textContent=`正解 ${score}`;$("feedback").classList.remove("hidden");$("feedback").classList.add(correct?"good":"bad");
+ $("feedback").textContent=(correct?"正解。":"不正解。")+"\n"+q.e;
+ if(q.n){$("note").textContent=q.n;$("note").classList.remove("hidden");}
+ if(index>=11&&index<18&&Math.random()<.35&&soundOn){document.body.classList.add("glitch");setTimeout(()=>document.body.classList.remove("glitch"),650);}
+ if(index===27&&soundOn&&!scareDone){scareDone=true;setTimeout(showScare,500);}
+ $("next").textContent=index===qs.length-1?"結果を見る":"次の問題へ";$("next").classList.remove("hidden");
+}
+function showScare(){if(!soundOn||$("game").classList.contains("hidden"))return;const el=$("scare");el.classList.remove("hidden");el.querySelector(".face").textContent=Math.random()>.5?"●":"◉";setTimeout(()=>el.classList.add("hidden"),700);}
+function next(){if(!answered)return;index++;if(index>=qs.length){finish();return;}render();}
+function finish(){
+ $("game").classList.add("hidden");$("result").classList.remove("hidden");$("progress").style.width="100%";$("finalScore").textContent=`${score} / ${qs.length}`;
+ let title,body;
+ if(score>=24){title="TRUE END：出席確認、終了";body="最後の欄は空欄のまま。\\n教室のドアが開いた。外はいつもの廊下だった。\\n\\nでも、出席簿の最後のページには、まだ乾いていないインクでこう書かれていた。\\n\\n『また明日』";}
+ else if(score>=15){title="NORMAL END：帰宅";body="あなたは教室を出た。\\n明成高校は、いつも通りの静けさを取り戻した。\\n\\n翌朝、出席簿を開いた先生は首をかしげた。\\n昨日までなかった欄が、ひとつ増えている。";}
+ else{title="BAD END：返事をした";body="最後の欄に、何かを書いてしまった。\\n教室の椅子が、ひとつだけ音を立てて引かれた。\\n\\n翌朝、教室には机と椅子がひとつずつ増えていた。\\n誰も、その理由を尋ねなかった。";}
+ $("ending").innerHTML="";const h=document.createElement("h2");h.textContent=title;const p=document.createElement("p");p.textContent=body.replace(/\\n/g,"\n");$("ending").append(h,p);
+ document.body.classList.add("stage3","scan");
+}
+$("start").onclick=startGame;$("next").onclick=next;$("restart").onclick=()=>{document.body.classList.remove("stage2","stage3","scan");$("result").classList.add("hidden");$("home").classList.remove("hidden");};$("quit").onclick=()=>{if(confirm("タイトルに戻りますか？ 今の進行状況は失われます。")){document.body.classList.remove("stage2","stage3","scan");$("game").classList.add("hidden");$("home").classList.remove("hidden");}};
+$("soundToggle").onclick=()=>{soundOn=!soundOn;$("soundToggle").textContent=`演出：${soundOn?"ON":"OFF"}`;document.body.classList.toggle("scan",soundOn&&index>=17);if(!soundOn){$("scare").classList.add("hidden");document.body.classList.remove("glitch");}};
+</script>
+</body>
+</html>
